@@ -13,5 +13,6 @@ namespace ConsoleApplication1.Menu
         {
             TextOnTitle = titleText;
         }
+        public abstract void execute();
     }
 }

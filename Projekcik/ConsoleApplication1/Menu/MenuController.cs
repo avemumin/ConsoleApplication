@@ -17,7 +17,7 @@ namespace ConsoleApplication1.Menu
         }
         public void PrintMenu()
         {
-            int position = 0;
+            int position = 1;
             Console.WriteLine("---- {0} ----", Text);
 
             foreach (MenuEntry item in lista)
@@ -34,10 +34,25 @@ namespace ConsoleApplication1.Menu
                 Console.Clear();
                 PrintMenu();
                 someKey = Console.ReadKey();
-
+                ExecuteEntry(someKey);
             } while (true);
         }
 
+        public void ExecuteEntry(ConsoleKeyInfo key)
+        {
+            if (!char.IsDigit(key.KeyChar))
+                return;
+            int position = 1;
+            int num = key.KeyChar - '0';
+            foreach (MenuEntry item in lista)
+            {
+                if (position++ == num)
+                {
+                    item.execute();
+                    return;
+                }
+            }
+        }
 
     }
 }
